@@ -1,0 +1,18 @@
+{% extends 'wines/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            {% if wine.preview %}
+                <img src="{{ wine.preview.url }}" class="img-fluid" alt="{{ wine.name }}">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <h1>{{ wine.name }}</h1>
+            <p><strong>Сорт винограда:</strong> {{ wine.grape_variety }}</p>
+            <p><strong>Описание:</strong> {{ wine.description }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

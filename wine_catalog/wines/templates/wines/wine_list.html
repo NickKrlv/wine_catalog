@@ -1,0 +1,30 @@
+{% extends 'wines/base.html' %}
+
+{% block content %}
+<h1>Наличие вина</h1>
+<div class="row">
+    {% for wine in wine_list %}
+    {% if wine.is_active %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            {% if wine.preview %}
+                <img src="{{ wine.preview.url }}" class="card-img-top" alt="{{ wine.name }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ wine.get_absolute_url }}">{{ wine.name }}</a></h5>
+                <p class="card-text">{{ wine.grape_variety }}</p>
+                <p class="card-text">{{ wine.description|truncatechars:50 }}</p>
+            </div>
+            <div class="card-footer">
+                <a href="{{ wine.get_absolute_url }}" class="btn btn-primary">Детали</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% empty %}
+    <div class="col-md-12">
+        <p>No wines available.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
